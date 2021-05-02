@@ -1,0 +1,2389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136460513-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136460513-1');
+</script>
+
+
+  <title>Hello!</title>
+  <script type="text/javascript" language="JavaScript1.2">
+  var i;
+  var j;
+  var speed;
+  var start;
+  var pause;
+  var stop;
+  var element=getRandom();
+  var limit;
+  var s;
+  var m;
+  var side;
+  var turn=5;
+  var turning=0;
+  var right=0;
+  var left=0;
+  var down=0;
+  var dont;
+   function getRandom()
+   {
+   var min_random=2;
+   var max_random=2;
+   max_random++;
+   var range=max_random-min_random;
+   var n=Math.floor(Math.random()*range)+min_random;
+   return n;
+   }
+   ////////
+   function Start()
+   {
+   var l=0;
+   for ( var k=0; k<16; ++k)
+   {
+
+       for (var l=0; l<10; ++l)
+       {
+
+      document.all.mytab.rows[k].cells[l].innerHTML="&nbsp;" ;
+       }
+
+   }
+   stab();
+   i=0;
+   j=4;
+   start=1;
+   pause=0;
+   turning=0;
+
+
+   limit=0;
+   s=1;
+   m=0;
+   speed=document.all.speed[document.all.speed.selectedIndex].value ;
+   Timer();
+   stab();
+   draw();
+
+        // element=getRandom();
+        // Tetris();
+   setTimeout('Tetris();',parseInt(speed));
+
+  }
+
+  function Tetris()
+  {
+
+ if (pause!=1)
+ {
+  speed=document.all.speed[document.all.speed.selectedIndex].value ;
+  setTimeout('Tetris();',parseInt(speed));
+
+  //////////////////**************//////////////////////////////
+
+    document.all.element.innerText=element;
+      var w=2;
+
+  //element 1
+ if (element==1)
+ {
+ ///////////// ***** stolknovenie*****
+
+ ///////////// *****
+
+
+ //1 cube
+ //if (turning==0)
+ //{
+
+ if ( i<document.all.mytab.rows.length )
+   {
+
+
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   }
+
+
+   //
+   //2 cube
+
+   if ((j+1)<document.all.mytab.cells.length)
+   {
+
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+
+   //3 cube
+   if ((i-1)>=0)
+   {
+     document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>";
+   if (((i-3)>=0)&& (dont!=1) )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+
+   //}
+   //if (turning!=0)
+   //{
+    if (turning==1)
+    {
+    // w++;
+     //
+
+     //document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ; document.all.mytab.rows[i-1].cells[j+2].innerHTML="<img src='5.jpg'>";
+        if ((document.all.mytab.rows[i].cells[j+2].innerHTML!="&nbsp;")||(document.all.mytab.rows[i+1].cells[j].innerHTML!="&nbsp;"))
+        {
+         turning=0;
+         //alert("rgfdgfdg");
+
+        }
+        else
+        {
+        //document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+       // document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+       // document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+        //document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;"  ;
+        document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+       // alert((i-1)+"    "+(j+1));
+
+        turning=0;
+        element=2;
+        stab();
+        draw();
+        }
+    }
+   // }
+    //zdvig v pravo
+    if(right==1)
+    {
+
+
+
+    // && (document.all.mytab.rows[i-1].cells[j+1].innerHTML!="<img src='5.jpg'>") && (document.all.mytab.rows[i-2].cells[j+1].innerHTML!="<img src='5.jpg'>"))
+
+        if (((j+1)<9) && (i>1))
+        {
+        if (document.all.mytab.rows[i].cells[j+2].innerHTML=="&nbsp;")
+        {
+        document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+        if(i-1<16)
+        {
+        document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+        }
+        if(i-2<16)
+        {
+        document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+        }
+        right=0;
+        j++;
+        i=i-1;
+        }
+
+        }
+    }
+
+   //zdvig v levo
+    if(left==1)
+    {
+
+        if ((j>0) && (i>1))
+        {
+            if ((document.all.mytab.rows[i].cells[j-1].innerHTML=="&nbsp;") && (document.all.mytab.rows[i-1].cells[j-1].innerHTML=="&nbsp;") && (document.all.mytab.rows[i-2].cells[j-1].innerHTML=="&nbsp;"))
+            {
+            document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+            document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+                if(i-1<16)
+                {
+                document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+                }
+                if(i-2<16)
+                {
+                document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+                }
+                 if(document.all.mytab.rows[i-3].cells[j-1].innerHTML!="&nbsp;")
+                {
+
+                dont=1;
+                }
+            left=0;
+            j--;
+            i=i-1;
+            }
+        }
+
+
+
+    }
+    //spusk
+
+    //////////////////////////////////////////////////////////
+     if (down==1)
+    {   if((i<14) && (i>1))
+        {
+        if ((document.all.mytab.rows[i+2].cells[j].innerHTML=="&nbsp;") && ( document.all.mytab.rows[i+2].cells[j+1].innerHTML=="&nbsp;"))
+        {
+        document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+         document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+         document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+         document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+        i++;
+        down=0;
+        }
+
+        }
+    }
+   ///////////////////////////////////////////////////////////
+            if(i!=15)
+        {
+            if ( (document.all.mytab.rows[i+1].cells[j].innerHTML!="&nbsp;")||(document.all.mytab.rows[i+1].cells[j+1].innerHTML!="&nbsp;") )
+            {
+            limit=1;
+            }
+        }
+   }
+
+   ///οπΰπΰοπομπ
+
+   ///gfgcvgfgfgfg11
+
+
+    //element 6
+
+    if (element==2)
+ {
+
+ //1 cube
+
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if (((i-2)>=0) && (dont!=1) )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j+2].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+2].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   //if (turning!=0)
+  // {
+   // if (turning==1)
+   // {//w++;
+     //
+   // document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+   // document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+   // document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;";
+   // document.all.mytab.rows[i-2].cells[j+2].innerHTML="&nbsp;";
+     //
+   // turning=0;
+   // element=3;
+   // stab();
+   // draw();
+
+
+   // }
+   // }
+    ////---------------///
+
+    if (turning==1)
+    {
+
+        if ((document.all.mytab.rows[i].cells[j+2].innerHTML!="&nbsp;")||(document.all.mytab.rows[i+1].cells[j].innerHTML!="&nbsp;"))
+        {
+
+         turning=0;
+
+
+        }
+        else
+        {
+
+
+        document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+        document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;";
+        document.all.mytab.rows[i-2].cells[j+2].innerHTML="&nbsp;";
+
+        turning=0;
+        element=3;
+        stab();
+        draw();
+        }
+    }
+    ///----------------///
+
+     if(right==1)
+    {
+        if (((j+1)<9) && (i>1))
+        {
+            if (document.all.mytab.rows[i-1].cells[j+3].innerHTML=="&nbsp;")
+            {
+            document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+
+                if(i-1<16)
+                {
+                document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+                document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+                document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;" ;
+                }
+
+             right=0;
+             j++;
+             i=i-1;
+            }
+        }
+    }
+
+
+
+
+    ///-------/////
+     if(left==1)
+    {
+        if ((j>0) && (i>1))
+        {
+            if ((document.all.mytab.rows[i].cells[j-1].innerHTML=="&nbsp;") && (document.all.mytab.rows[i-1].cells[j-1].innerHTML=="&nbsp;"))
+            {
+
+            document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+
+                if(i-1<16)
+                {
+                document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+                document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+                document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;" ;
+                }
+                if(document.all.mytab.rows[i-2].cells[j-1].innerHTML!="&nbsp;")
+                {
+
+                dont=1;
+                }
+
+            left=0;
+            j--;
+            i=i-1;
+            }
+
+        }
+    }
+    if (down==1)
+    {   if((i<14) && (i>1))
+        {
+            if ((document.all.mytab.rows[i+2].cells[j].innerHTML=="&nbsp;") && ( document.all.mytab.rows[i+2-1].cells[j+1].innerHTML=="&nbsp;")&& ( document.all.mytab.rows[i+2-1].cells[j+2].innerHTML=="&nbsp;"))
+            {
+            document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+            document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+            document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+            document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;" ;
+            i++;
+            down=0;
+            }
+
+        }
+    }
+    if(i!=15)
+        {
+            if ( (document.all.mytab.rows[i+1].cells[j].innerHTML!="&nbsp;")||(document.all.mytab.rows[i-1+1].cells[j+1].innerHTML!="&nbsp;")||(document.all.mytab.rows[i-1+1].cells[j+2].innerHTML!="&nbsp;"))
+            {
+            limit=1;
+            }
+        }
+    }
+
+
+    ///--------////
+
+    //element 7
+    if (element==3)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-2)>=0 )
+   {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j-1].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { //w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-3].cells[j-1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=4;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+    }
+    //element 8
+    if (element==4)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i)>=0 )
+   {
+     document.all.mytab.rows[i].cells[j-2].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-2].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-2].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=1;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-2].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-2].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 2
+    if (element==5)
+    {
+ //1 cube
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((j+1)<document.all.mytab.cells.length)
+   {
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+
+   if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+    }
+  // if (turning!=0)
+  // {
+  //  if (turning==1)
+  //  {
+     //
+  //  document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+  //  document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+  //  document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+   // document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     //
+  //  turning=0;
+  //  element=6;
+  //  stab();
+
+   // draw();
+  //  }
+  //  }
+
+   //element 3
+    if (element==6)
+ {
+ //1 cube
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((j+1)<document.all.mytab.rows.length)
+   {
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j-1].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+    if (turning!=0)
+   {
+    if (turning==1)
+    {//  w++;
+     //
+   document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+   document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+   document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;"  ;
+   document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=7;
+    stab();
+
+    draw();
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+    //element 13
+    if (element==7)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j+1].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { //  w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;";
+    document.all.mytab.rows[i-3].cells[j+1].innerHTML="&nbsp;";
+     //
+    turning=0;
+    element=6;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 4
+if (element==8)
+ {
+ //1 cube
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+    if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+
+   //4 cube
+    if ((i-3)>=0)
+   {
+   document.all.mytab.rows[i-3].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-4)>=0 )
+    {
+     document.all.mytab.rows[i-4].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {// w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-4].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=9;
+    stab();
+
+    draw();
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   //element 19
+    if (element==9)
+ {
+
+ //1 cube
+ if (turning==0)
+ {
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i)>=0 )
+   {
+     document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j+2].innerHTML="<img src='5.jpg'>";
+   if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {//  w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=8;
+    stab();
+    draw();
+    }
+    }
+      if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+2].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+2].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+
+    //element 5
+ if (element==10)
+ {
+ //1 cube
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((j+1)<document.all.mytab.cells.length)
+   {
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((j+2)<document.all.mytab.cells.length)
+   {
+     document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {// w++;
+     //
+    document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=11;
+    stab();
+
+    draw();
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+
+   ///
+    //element 16
+    if (element==11)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {  // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;";
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=12;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 17
+    if (element==12)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j-1].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {  // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=13;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 18
+    if (element==13)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { //  w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;";
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=10;
+    stab();
+    draw();
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+
+   ///
+
+   //element 9
+    if (element==14)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+    }
+
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {//  w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=15;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 10
+    if (element==15)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i)>=0 )
+   {
+     document.all.mytab.rows[i].cells[j+2].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {  // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j+2].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=16;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+2].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+2].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 11
+    if (element==16)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-2)>=0 )
+   {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j+1].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {//  w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-3].cells[j].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-3].cells[j+1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=17;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 12
+    if (element==17)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i].cells[j+1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i+1)<16)
+   {
+   document.all.mytab.rows[i+1].cells[j+1].innerHTML="<img src='5.jpg'>";
+  // if ((i)>=0 )
+   // {
+   //  document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+   // }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;";
+    document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=14;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i+1].cells[j+1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j+1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i+1].cells[j+1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+
+   //element 14
+    if (element==18)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i)>=0)
+   {
+   document.all.mytab.rows[i].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+    if ((i-1)>=0 )
+    {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j+1].innerHTML="<img src='5.jpg'>";
+   if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    {  // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;"  ;
+    document.all.mytab.rows[i-2].cells[j+1].innerHTML="&nbsp;" ;
+     //
+    turning=0;
+    element=19;
+    stab();
+    draw();
+
+
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j+1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+   ///
+   //element 15
+    if (element==19)
+ {
+
+ //1 cube
+ if (turning==0){
+
+   if ( i<document.all.mytab.rows.length )
+   {
+    document.all.mytab.rows[i].cells[j].innerHTML="<img src='5.jpg'>" ;
+     if ((i-1)>=0 )
+     {
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     }
+   //2 cube
+   if ((i-1)>=0)
+   {
+   document.all.mytab.rows[i-1].cells[j].innerHTML="<img src='5.jpg'>" ;
+    if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    }
+   }
+   //3 cube
+   if ((i-1)>=0 )
+   {
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="<img src='5.jpg'>" ;
+     if ((i-2)>=0 )
+    {
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;"  ;
+    }
+   }
+   //4 cube
+   if ((i-2)>=0)
+   {
+   document.all.mytab.rows[i-2].cells[j-1].innerHTML="<img src='5.jpg'>";
+   if ((i-3)>=0 )
+    {
+     document.all.mytab.rows[i-3].cells[j-1].innerHTML="&nbsp;" ;
+    }
+   }
+   }
+   }
+   if (turning!=0)
+   {
+    if (turning==1)
+    { // w++;
+     //
+    document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j].innerHTML="&nbsp;" ;
+    document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;";
+    document.all.mytab.rows[i-3].cells[j-1].innerHTML="&nbsp;";
+     //
+    turning=0;
+    element=18;
+    stab();
+    draw();
+    }
+    }
+    if(right==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+     right=0;
+     j++;
+     i=i-2;
+    }
+    if(left==1)
+    {
+     document.all.mytab.rows[i].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-1].cells[j-1].innerHTML="&nbsp;" ;
+     document.all.mytab.rows[i-2].cells[j-1].innerHTML="&nbsp;" ;
+     left=0;
+     j--;
+     i=i-2;
+    }
+   }
+
+
+
+
+     if((i==document.all.mytab.rows.length-1)||(limit==1))
+     {
+     element=getRandom();
+
+     i=0;
+     j=4;
+     turning=0;
+     right=0;
+     left=0;
+     down=0;
+     dont=0;
+
+      stab();
+      draw();
+      limit=0;
+      check();
+      bonus();
+
+     }
+
+
+
+     i++;
+     ///pause
+ }
+}
+ function draw()
+ {
+  if (element==1)
+   {
+   document.all.stab.rows[3].cells[1].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[2].cells[1].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[1].cells[1].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[3].cells[2].innerHTML="<img src='6.jpg'>";
+   }
+     if (element==2)
+   {
+   document.all.stab.rows[3].cells[1].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[3].cells[2].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[2].cells[1].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[2].cells[2].innerHTML="<img src='6.jpg'>";
+   }
+     if (element==3)
+   {
+   document.all.stab.rows[3].cells[2].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[3].cells[3].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[2].cells[2].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[2].cells[1].innerHTML="<img src='6.jpg'>";
+   }
+     if (element==4)
+   {
+   document.all.stab.rows[4].cells[2].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[3].cells[2].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[2].cells[2].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[1].cells[2].innerHTML="<img src='6.jpg'>";
+   }
+     if (element==5)
+   {
+   document.all.stab.rows[3].cells[1].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[3].cells[2].innerHTML="<img src='6.jpg'>";
+   document.all.stab.rows[3].cells[3].innerHTML="<img src='6.jpg'>" ;
+   document.all.stab.rows[2].cells[2].innerHTML="<img src='6.jpg'>";
+   }
+ }
+
+  function Pause()
+  {
+  if(start==1)
+  {
+  pause=1;
+  }
+  }
+  function Continue()
+  {
+   if (pause==1)
+   {
+    pause=0;
+    Tetris();
+    Timer();
+   }
+  }
+  function Stop()
+  {
+    pause=1;
+    var l=0;
+     for ( var k=0; k<16; k++)
+     {
+
+     for (var l=0; l<10; l++)
+     {
+
+         document.all.mytab.rows[k].cells[l].innerHTML="&nbsp;" ;
+     }
+     }
+     stab();
+     }
+     function stab()
+     {
+      for ( var s=0; s<5; ++s)
+        {
+         for (var r=0; r<5; ++r)
+          {
+
+             document.all.stab.rows[s].cells[r].innerHTML="&nbsp;" ;
+          }
+        }
+        document.all.time.innerText="00:00 ";
+        document.all.score.innerText="0";
+        document.all.element.innerText="?";
+
+     }
+
+  function move()
+  {
+  side=keyListener();
+
+ // if (side)
+//  {
+  if (side==39)
+  {
+
+  if (i<16)
+  //j<document.all.mytab.cells.length-1
+  right=1;
+  //j++;
+  }
+  if (side==37)
+  {
+   if (i<16)
+   //(j+1)>=0
+   left=1;
+
+  //j--;
+  }
+  if (side==40)
+  {
+    down=1;
+  //i++;
+  }
+   if (side==38)
+  {
+  if((i>2)&& (i<15))
+  {
+   turning=1;
+  }
+  }
+ }
+
+ /// function turn()
+ // {
+  ///  var turn2=turn%4;
+  //  turn++ ;
+  //  return  turn2;
+ // alert("Not yet");
+ // }
+  function keyListener(e)
+  {
+  var key=0;
+  //if (( navigtor .appName.indexOf('Netscape'!=-1))||(navigator.serAgent.toLowerCase().indexOf("gecho")!=-1));
+//  {
+  //key=e.which;
+ // }
+  if (event.keyCode)
+  {
+  key=event.keyCode;
+  }
+  if (key!=0)
+  {
+return key;
+  }
+  }
+document.onkeydown=move;
+ //document.onKeyPress=move;
+
+ function Timer()
+ {
+ m=parseInt(m);
+ s=parseInt(s);
+ if (pause!=1)
+ {
+ document.all.time.innerText=" ";
+ if (s<60)
+  {
+  document.all.time.innerText=m+":"+s;
+    s++;
+  }
+  if (s>59)
+  {
+  s=0;
+  m=m+1;
+  document.all.time.innerText=m+":"+s;
+  }
+
+   setTimeout('Timer();',1000);
+  }
+ }
+ function check()
+ {
+ var over=0;
+    for ( var g=0; g<10; g++)
+    {
+     if (document.all.mytab.rows[0].cells[g].innerHTML!="&nbsp;")
+    {
+    // vihod iz sikla!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+   // Pause();
+    over=1;
+    break;
+    }
+
+    }
+    if (over==1)
+    {
+
+    for (var stroka=0;stroka<16;stroka++)
+    {
+        for(var stolb=0;stolb<10;stolb++)
+        {
+        document.all.mytab.rows[stroka].cells[stolb].innerHTML="<img src='5.jpg'>" ;
+        }
+    }
+    alert ("Game over");
+
+    for ( var k=0; k<16; k++)
+     {
+
+     for (var l=0; l<10; l++)
+     {
+
+         document.all.mytab.rows[k].cells[l].innerHTML="&nbsp;" ;
+     }
+     }
+     pause=1;
+     stab();
+
+    }
+ }
+ function bonus()
+ {
+ var zapolnenie=0;
+ for (var stroka=0; stroka<16; stroka++)
+ {
+    for (var stolbes=0; stolbes<10;stolbes++)
+    {
+        if (document.all.mytab.rows[stroka].cells[stolbes].innerHTML!="&nbsp;")
+        {
+
+        zapolnenie++;
+
+
+        }
+
+    }
+    if (zapolnenie==10)
+    {
+
+            for (var  nach=stroka; nach>0; nach--)
+            {
+                for  (var u=0; u<10; u++)
+                {
+                document.all.mytab.rows[nach].cells[u].innerHTML=document.all.mytab.rows[nach-1].cells[u].innerHTML ;
+                }
+            }
+     document.all.mytab.rows[0].cells.innerHTML="&nbsp;";
+
+    }
+    zapolnenie=0;
+ }
+ }
+  </script>
+
+
+
+  <style type="text/css">
+<!--
+td {
+		border-color:#3333FF; border:#3300FF; color:#0000CC; background:#CC99FF;
+        height:25px;
+        width:25px;
+
+        text-align: center;
+        vertical-align:bottom;
+	  }
+tr {
+    height: 25px;
+    width:25px;
+
+    }
+
+h4 { color:#FF00FF}
+.style2 {
+	color: #0033CC;
+	font-weight: bold;
+}
+.style3 {
+	font-size: 36px;
+	color: #6633FF;
+	font-weight: bold;
+}
+-->
+  </style>
+</head>
+
+<body bgcolor="#FFFFFF"  >
+<h3 align="center" class="style3" >T E T R I S</h3>
+
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>
+<table  border="3" align="center" ID="mytab"  style="border-color:#339933; position:absolute; left: 450px; top: 90px; " name="mytab"  >
+<tr ><td >&nbsp; </td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td><td >&nbsp;</td>
+</tr>
+<tr><td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td >&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr><td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+<table ID="stab" width="142" border="3" style="border-color:#339933; position:absolute; left: 800px; top: 124px;">
+  <tr>
+    <td height="15" width="20">&nbsp;</td>
+    <td height="15" width="20">&nbsp;</td>
+    <td height="15" width="20">&nbsp;</td>
+    <td height="15" width="20">&nbsp;</td>
+    <td height="15" width="20">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+   <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<h4 class="style2"  style="position:absolute; left: 800px; top: 334px; width: 61px;">Time</h4>
+<h4 class="style2"  style="position:absolute; left: 800px; top: 287px; width: 63px;">Score </h4>
+<h4 class="style2"  style="position:absolute; left: 800px; top: 384px; width: 58px;">Element:</h4>
+<h4 ID="time" style="position:absolute;  left: 850px; top: 335px; width: 55px;"><em>00:00</em></h4>
+<h4 ID="score" style="position:absolute; left: 850px; top: 287px; width: 55px;"><em>0 </em></h4>
+<h4 ID="element" style="position:absolute; left: 870px; top: 381px; width: 55px;"><em>?</em></h4>
+
+<p class="style2">
+  <input name="Start" type="button"  onclick="Start()" value="Start" style="position:absolute; left: 360px; top: 600px; width: 106px; height: 34px; background-color:#9999FF; font-size:16px; font-weight:800; color:#6633CC" />
+  <input name="Pause" type="button" onclick="Pause()" value="Pause" style="position:absolute; left: 480px; top: 600px; width: 106px; height: 34px;background-color:#9999FF; font-size:16px; font-weight:800;color:#6633CC" />
+  <input name="Continue" type="button" onclick="Continue()"value="Continue" style="position:absolute; left: 600px; top: 600px; width: 110px; height: 34px;background-color:#9999FF; font-size:16px; font-weight:800;color:#6633CC" />
+  <input name="Stop" type="button" onclick="Stop()" value="Stop" style="position:absolute; width: 110px; height: 34px; background-color:#9999FF; font-size:16px; font-weight:800; color:#6633CC; left: 730px; top: 600px;" />
+</p>
+<h4 class="style2" style="position:absolute; left: 800px; top: 430px; width: 61px;" >Speed: </h4>
+  <SELECT name="speed" size="1" style="position:absolute; left: 900px; top: 450px; width: 60px;">
+             <OPTION value="1000" selected>1
+             <OPTION value="2000">2
+             <OPTION value="3000">3
+  </SELECT>
+
+</body>
+
+</html>
